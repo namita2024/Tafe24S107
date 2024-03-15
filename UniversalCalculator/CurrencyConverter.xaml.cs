@@ -1,10 +1,29 @@
 ﻿using System;
-using System.Windows;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
+using Windows.UI.Popups;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
 
-namespace CurrencyConverter
+// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+
+namespace Calculator
 {
-	public partial class MainWindow : Window
+	/// <summary>
+	/// An empty page that can be used on its own or navigated to within a Frame.
+	/// </summary>
+	public sealed partial class CurrencyConverter : Page
 	{
+
 		// Define conversion rates
 		private const double USD_TO_EURO = 0.85189982;
 		private const double USD_TO_POUND = 0.72872436;
@@ -22,17 +41,18 @@ namespace CurrencyConverter
 		private const double INR_TO_EURO = 0.013492774;
 		private const double INR_TO_POUND = 0.0098339397;
 
-		public MainWindow()
+		public CurrencyConverter()
 		{
-			InitializeComponent();
+			this.InitializeComponent();
 		}
 
-		private void Convert_Click(object sender, RoutedEventArgs e)
+		private async void convertButton_Click(object sender, RoutedEventArgs e)
 		{
 			double amount;
 			if (!double.TryParse(txtAmount.Text, out amount))
 			{
-				MessageBox.Show("Please enter a valid amount.");
+				var dialogMessage = new MessageDialog("Please enter a valid amount.");
+				await dialogMessage.ShowAsync();
 				return;
 			}
 
@@ -103,12 +123,12 @@ namespace CurrencyConverter
 			}
 
 			txtResult.Text = $"{amount} {cmbFromCurrency.Text} = {result} {cmbToCurrency.Text}";
-			txtDetails.Text = $"{amount} {cmbFromCurrency.Text} = {result} {cmbToCurrency.Text}";
+			detailsTextBlock.Text = $"{amount} {cmbFromCurrency.Text} = {result} {cmbToCurrency.Text}";
 		}
 
-		private void Exit_Click(object sender, RoutedEventArgs e)
+		private void exitButton_Click(object sender, RoutedEventArgs e)
 		{
-			Application.Current.Shutdown();
+			// Application.Current.Shutdown();
 		}
 	}
 }
