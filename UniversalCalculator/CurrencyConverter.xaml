@@ -21,7 +21,6 @@
 			<RowDefinition Height="*" />
 			<RowDefinition Height="*" />
 			<RowDefinition Height="*" />
-			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
 
 		<TextBlock Grid.Row="0" Grid.Column="1" Text="Currency Conversion Calculator" FontWeight="Bold" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Verdana"/>
@@ -46,15 +45,14 @@
 			<ComboBoxItem Content="British Pound" />
 			<ComboBoxItem Content="Indian Rupee" />
 		</ComboBox>
-		<StackPanel Orientation="Vertical" Grid.Row="6" Grid.Column="1">
-			<Button x:Name="convertButton" Content="Convert" Margin="10" Click="convertButton_Click"/>
-			<Button x:Name="exitButton" Content="Exit" Margin="10" Click="exitButton_Click"/>
+		<StackPanel Orientation="Vertical" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center">
+			<Button x:Name="convertButton" Content="Convert" Margin="10" Click="convertButton_Click" HorizontalAlignment="Center"/>
+			<Button x:Name="exitButton" Content="Exit" Margin="10" Click="exitButton_Click" HorizontalAlignment="Center"/>
 		</StackPanel>
 
 
-		<TextBlock x:Name="resultTextBlock" Text="Result:" Grid.Row="4" Grid.Column="0" Margin="9,0,11,19" SelectionChanged="resultTextBlock_SelectionChanged" />
-		<TextBox x:Name="resultTextBox" Grid.Row="4" Grid.Column="1" Margin="10" IsReadOnly="True"  AcceptsReturn="True" TextWrapping="Wrap" />
+		<TextBlock x:Name="resultTextBlock" Text="Result:" Grid.Row="3" Grid.Column="0" Margin="9,0,11,19" TextAlignment="Right" HorizontalAlignment="Right"/>
+		<TextBox x:Name="resultTextBox" Grid.Row="3" Grid.Column="1" Margin="10" IsReadOnly="True"  AcceptsReturn="True" TextWrapping="Wrap" />
 
-		<TextBlock x:Name="detailsTextBlock" Text="Details" Grid.ColumnSpan="3" Grid.Row="4" Grid.Column="0" Margin="10,24,-10,70" Grid.RowSpan="2" SelectionChanged="detailsTextBlock_SelectionChanged"/>
 	</Grid>
 </Page>
