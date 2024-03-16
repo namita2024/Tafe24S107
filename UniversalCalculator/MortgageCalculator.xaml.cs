@@ -158,7 +158,7 @@ namespace Calculator
 		/// <param name="e"></param>
 		private void exitButton_Click(object sender, RoutedEventArgs e)
 		{
-			Frame.Navigate(typeof(CurrencyConverter));
+			Frame.Navigate(typeof(MainMenu));
 		}
 	}
 }

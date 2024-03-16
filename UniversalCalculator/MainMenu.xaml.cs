@@ -31,7 +31,6 @@ namespace Calculator
 		private void mathButton_Click(object sender, RoutedEventArgs e)
 		{
 			Frame.Navigate(typeof(MainPage));
-
 		}
 
 		private void mortgageButton_Click(object sender, RoutedEventArgs e)
@@ -47,6 +46,11 @@ namespace Calculator
 		private void exitButton_Click(object sender, RoutedEventArgs e)
 		{
 			Application.Current.Exit();
+		}
+
+		private void tripButton_Click(object sender, RoutedEventArgs e)
+		{
+			// Trip calculator C# code will be developed later
 		}
 	}
 }
