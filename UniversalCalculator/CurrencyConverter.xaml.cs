@@ -60,6 +60,7 @@ namespace Calculator
 
 			// Perform conversion based on selected currencies
 			double result = 0;
+			double result2 = 0;
 			switch (fromCurrency)
 			{
 				case "US Dollar":
@@ -77,26 +78,26 @@ namespace Calculator
 			}
 
 			// Get value of the selected currency
-			double toCurrencyValue = GetCurrencyValue(toCurrency);
+			double toCurrencyValue = GetCurrencyValue(toCurrency, fromCurrency);
 
 			// Display result
-			resultTextBox.Text += $"{amount} {fromCurrency} = {result} {toCurrency} \n (1 {toCurrency} = {toCurrencyValue} {fromCurrency})\n";
+			resultTextBox.Text = $"{amount} {fromCurrency} = {result} {toCurrency} \n (1 {toCurrency} = {toCurrencyValue} {fromCurrency}\n";
 
 		}
 
 		// Method to get the value of the selected currency
-		private double GetCurrencyValue(string currency)
+		private double GetCurrencyValue(string toCurrency, string fromCurrency)
 		{
-			switch (currency)
+			switch (toCurrency)
 			{
 				case "US Dollar":
-					return 1.0;
+					return ConvertFromUSD(1, fromCurrency);
 				case "Euro":
-					return 0.85189982;
+					return ConvertFromEUR(1, fromCurrency);
 				case "British Pound":
-					return 0.72872436;
+					return ConvertFromGBP(1, fromCurrency);
 				case "Indian Rupee":
-					return 74.257327;
+					return ConvertFromINR(1, fromCurrency);
 				default:
 					return 0;
 			}
@@ -172,18 +173,8 @@ namespace Calculator
 
 		private void exitButton_Click(object sender, RoutedEventArgs e)
 		{
-			// Close the application
-			Application.Current.Exit();
-		}
-
-		private void detailsTextBlock_SelectionChanged(object sender, RoutedEventArgs e)
-		{
-
-		}
-
-		private void resultTextBlock_SelectionChanged(object sender, RoutedEventArgs e)
-		{
-
+			// Navigates back to main menu
+			Frame.Navigate(typeof(MainMenu));
 		}
 	}
 }

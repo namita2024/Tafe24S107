@@ -24,10 +24,10 @@
 		</Grid.RowDefinitions>
 		<TextBlock Grid.Row="0" Grid.Column="1" Text="Universal Calculator" FontWeight="Bold" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Verdana"/>
 
-		<Button x:Name="mathButton" Content="Maths Calculator" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Width="195" Height="76"/>
-		<Button x:Name="mortgageButton" Content="Mortgage Calculator" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Width="195" Height="76"/>
-		<Button x:Name="currencyButton" Content="Currency Converter" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" Width="195" Height="76"/>
-		<Button x:Name="exitButton" Content="Exit" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" Width="195" Height="76"/>
+		<Button x:Name="mathButton" Content="Maths Calculator" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Width="195" Height="76" Click="mathButton_Click"/>
+		<Button x:Name="mortgageButton" Content="Mortgage Calculator" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Width="195" Height="76" Click="mortgageButton_Click"/>
+		<Button x:Name="currencyButton" Content="Currency Converter" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" Width="195" Height="76" Click="currencyButton_Click"/>
+		<Button x:Name="exitButton" Content="Exit" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" Width="195" Height="76" Click="exitButton_Click"/>
 
 		<Image Source="/Assets/abacus.PNG" Grid.Row="0" Grid.Column="2" Margin="10"/>
 

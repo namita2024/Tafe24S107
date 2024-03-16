@@ -152,13 +152,13 @@ namespace Calculator
 
 		}
 		/// <summary>
-		/// Exits the application when the exit button is pressed.
+		/// Navigates back to the main menu.
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		private void exitButton_Click(object sender, RoutedEventArgs e)
 		{
-			Application.Current.Exit();
+			Frame.Navigate(typeof(MainMenu));
 		}
 	}
 }
