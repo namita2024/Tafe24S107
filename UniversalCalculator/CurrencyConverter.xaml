@@ -24,13 +24,13 @@
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
 
-		<TextBlock Grid.Row="0" Grid.Column="1" Text="Mortgage Calculator" FontWeight="Bold" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Verdana" SelectionChanged="TextBlock_SelectionChanged"/>
+		<TextBlock Grid.Row="0" Grid.Column="1" Text="Currency Conversion Calculator" FontWeight="Bold" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Verdana"/>
 
 		<TextBlock Text="Amount:" Grid.Row="1" Grid.Column="0" Margin="100,16,100,97" Width="300" FontSize="30" />
 		<TextBox x:Name="amountTextBox" Grid.Row="2" Grid.Column="0" Margin="10" Height="60" Width="300"/>
 
 		<TextBlock Text="From Currency:" Grid.Row="1" Grid.Column="1" Margin="100,24,100,86" Width="300" FontSize="30"/>
-		<ComboBox x:Name="currencyComboBox" Grid.Row="2" Grid.Column="1" Margin="10" Height="60" Width="300" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+		<ComboBox x:Name="fromCurrencyComboBox" Grid.Row="2" Grid.Column="1" Margin="10" Height="60" Width="300" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 			<!-- Add currency options here -->
 			<ComboBoxItem Content="US Dollar" />
 			<ComboBoxItem Content="Euro" />
@@ -39,7 +39,7 @@
 		</ComboBox>
 
 		<TextBlock Text="To Currency:" Grid.Row="1" Grid.Column="2" Margin="100,12,100,99" Width="300" FontSize="30"/>
-		<ComboBox x:Name="cmbToCurrency" Grid.Row="2" Grid.Column="2" Margin="10,10,0,0" Height="60" Width="300" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+		<ComboBox x:Name="toCurrencyComboBox" Grid.Row="2" Grid.Column="2" Margin="10,10,0,0" Height="60" Width="300" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 			<!-- Add currency options here -->
 			<ComboBoxItem Content="US Dollar" />
 			<ComboBoxItem Content="Euro" />
@@ -48,13 +48,13 @@
 		</ComboBox>
 		<StackPanel Orientation="Vertical" Grid.Row="6" Grid.Column="1">
 			<Button x:Name="convertButton" Content="Convert" Margin="10" Click="convertButton_Click"/>
-			<Button x:Name="exitButton" Content="Exit" Margin="111,0,0,0" Click="exitButton_Click"/>
+			<Button x:Name="exitButton" Content="Exit" Margin="10" Click="exitButton_Click"/>
 		</StackPanel>
 
 
-		<TextBlock x:Name="resultTextBlock" Text="Result:" Grid.Row="3" Grid.Column="0" Margin="10" />
-		<TextBox x:Name="resultTextBox" Grid.Row="4" Grid.Column="1" Margin="10" IsReadOnly="True" />
+		<TextBlock x:Name="resultTextBlock" Text="Result:" Grid.Row="4" Grid.Column="0" Margin="9,0,11,19" SelectionChanged="resultTextBlock_SelectionChanged" />
+		<TextBox x:Name="resultTextBox" Grid.Row="4" Grid.Column="1" Margin="10" IsReadOnly="True"  AcceptsReturn="True" TextWrapping="Wrap" />
 
-		<TextBlock x:Name="detailsTextBlock" Text="Details" Grid.ColumnSpan="2" Grid.Row="5" Grid.Column="0"/>
+		<TextBlock x:Name="detailsTextBlock" Text="Details" Grid.ColumnSpan="3" Grid.Row="4" Grid.Column="0" Margin="10,24,-10,70" Grid.RowSpan="2" SelectionChanged="detailsTextBlock_SelectionChanged"/>
 	</Grid>
 </Page>

@@ -23,7 +23,6 @@ namespace Calculator
 	/// </summary>
 	public sealed partial class CurrencyConverter : Page
 	{
-
 		// Define conversion rates
 		private const double USD_TO_EURO = 0.85189982;
 		private const double USD_TO_POUND = 0.72872436;
@@ -43,92 +42,148 @@ namespace Calculator
 
 		public CurrencyConverter()
 		{
-			this.InitializeComponent();
+			InitializeComponent();
 		}
 
-		private async void convertButton_Click(object sender, RoutedEventArgs e)
+		private void convertButton_Click(object sender, RoutedEventArgs e)
 		{
 			double amount;
-			if (!double.TryParse(txtAmount.Text, out amount))
+			if (!double.TryParse(amountTextBox.Text, out amount))
 			{
-				var dialogMessage = new MessageDialog("Please enter a valid amount.");
-				await dialogMessage.ShowAsync();
+				resultTextBox.Text = "Please enter a valid amount.";
 				return;
 			}
 
-			double result = 0;
+			// Get value of the selected currency
+			string fromCurrency = ((ComboBoxItem)fromCurrencyComboBox.SelectedItem).Content.ToString();
+			string toCurrency = ((ComboBoxItem)toCurrencyComboBox.SelectedItem).Content.ToString();
 
 			// Perform conversion based on selected currencies
-			switch (cmbFromCurrency.Text)
+			double result = 0;
+			switch (fromCurrency)
 			{
 				case "US Dollar":
-					switch (cmbToCurrency.Text)
-					{
-						case "Euro":
-							result = amount * USD_TO_EURO;
-							break;
-						case "British Pound":
-							result = amount * USD_TO_POUND;
-							break;
-						case "Indian Rupee":
-							result = amount * USD_TO_INR;
-							break;
-					}
+					result = ConvertFromUSD(amount, toCurrency);
 					break;
-
 				case "Euro":
-					switch (cmbToCurrency.Text)
-					{
-						case "US Dollar":
-							result = amount * EURO_TO_USD;
-							break;
-						case "British Pound":
-							result = amount * EURO_TO_POUND;
-							break;
-						case "Indian Rupee":
-							result = amount * EURO_TO_INR;
-							break;
-					}
+					result = ConvertFromEUR(amount, toCurrency);
 					break;
-
 				case "British Pound":
-					switch (cmbToCurrency.Text)
-					{
-						case "US Dollar":
-							result = amount * POUND_TO_USD;
-							break;
-						case "Euro":
-							result = amount * POUND_TO_EURO;
-							break;
-						case "Indian Rupee":
-							result = amount * POUND_TO_INR;
-							break;
-					}
+					result = ConvertFromGBP(amount, toCurrency);
 					break;
-
 				case "Indian Rupee":
-					switch (cmbToCurrency.Text)
-					{
-						case "US Dollar":
-							result = amount * INR_TO_USD;
-							break;
-						case "Euro":
-							result = amount * INR_TO_EURO;
-							break;
-						case "British Pound":
-							result = amount * INR_TO_POUND;
-							break;
-					}
+					result = ConvertFromINR(amount, toCurrency);
 					break;
 			}
 
-			txtResult.Text = $"{amount} {cmbFromCurrency.Text} = {result} {cmbToCurrency.Text}";
-			detailsTextBlock.Text = $"{amount} {cmbFromCurrency.Text} = {result} {cmbToCurrency.Text}";
+			// Get value of the selected currency
+			double toCurrencyValue = GetCurrencyValue(toCurrency);
+
+			// Display result
+			resultTextBox.Text += $"{amount} {fromCurrency} = {result} {toCurrency} \n (1 {toCurrency} = {toCurrencyValue} {fromCurrency})\n";
+
+		}
+
+		// Method to get the value of the selected currency
+		private double GetCurrencyValue(string currency)
+		{
+			switch (currency)
+			{
+				case "US Dollar":
+					return 1.0;
+				case "Euro":
+					return 0.85189982;
+				case "British Pound":
+					return 0.72872436;
+				case "Indian Rupee":
+					return 74.257327;
+				default:
+					return 0;
+			}
+		}
+
+		private double ConvertFromUSD(double amount, string toCurrency)
+		{
+			switch (toCurrency)
+			{
+				case "US Dollar":
+					return amount;
+				case "Euro":
+					return amount * USD_TO_EURO;
+				case "British Pound":
+					return amount * USD_TO_POUND;
+				case "Indian Rupee":
+					return amount * USD_TO_INR;
+				default:
+					return 0;
+			}
+		}
+
+		private double ConvertFromEUR(double amount, string toCurrency)
+		{
+			switch (toCurrency)
+			{
+				case "US Dollar":
+					return amount * EURO_TO_USD;
+				case "Euro":
+					return amount;
+				case "British Pound":
+					return amount * EURO_TO_POUND;
+				case "Indian Rupee":
+					return amount * EURO_TO_INR;
+				default:
+					return 0;
+			}
+		}
+
+		private double ConvertFromGBP(double amount, string toCurrency)
+		{
+			switch (toCurrency)
+			{
+				case "US Dollar":
+					return amount * POUND_TO_USD;
+				case "Euro":
+					return amount * POUND_TO_EURO;
+				case "British Pound":
+					return amount;
+				case "Indian Rupee":
+					return amount * POUND_TO_INR;
+				default:
+					return 0;
+			}
+		}
+
+		private double ConvertFromINR(double amount, string toCurrency)
+		{
+			switch (toCurrency)
+			{
+				case "US Dollar":
+					return amount * INR_TO_USD;
+				case "Euro":
+					return amount * INR_TO_EURO;
+				case "British Pound":
+					return amount * INR_TO_POUND;
+				case "Indian Rupee":
+					return amount;
+				default:
+					return 0;
+			}
 		}
 
 		private void exitButton_Click(object sender, RoutedEventArgs e)
 		{
-			// Application.Current.Shutdown();
+			// Close the application
+			Application.Current.Exit();
+		}
+
+		private void detailsTextBlock_SelectionChanged(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void resultTextBlock_SelectionChanged(object sender, RoutedEventArgs e)
+		{
+
 		}
 	}
 }
